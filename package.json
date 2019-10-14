@@ -1,10 +1,10 @@
 {
-  "name": "chess-ai-2",
-  "version": "1.0",
+  "name": "chess-ai-2-json",
   "description": "A chess AI, with different iterations and increasing intelligence",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "repository": "git+https://github.com/byanofsky/chess-ai-2.git",
   "author": "byanofsky <byanofsky@me.com>",
@@ -15,5 +15,11 @@
   "homepage": "https://github.com/byanofsky/chess-ai-2#readme",
   "dependencies": {
     "express": "^4.15.3"
+  },
+  "nodemonConfig": {
+    "delay": "2500"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3"
   }
 }
