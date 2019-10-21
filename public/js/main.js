@@ -17,7 +17,7 @@ var makeMove = function(algo, skill = 3) {
   } else {
     var move = calcBestMove(skill, game, game.turn())[1];
   }
-  console.log(move);
+  // console.log(move);
   // Make the calculated move
   game.move(move);
   // Update board positions
@@ -25,9 +25,11 @@ var makeMove = function(algo, skill = 3) {
 };
 
 // Computer vs Computer
-var playGame = function(algoW = 4, algoB = 4, skillW = 3, skillB = 2) {
+var playGame = function(algoW = 4, algoB = 4, skillW = 1, skillB = 1) {
   if (game.game_over() === true) {
-    console.log('game over' + game);
+    console.log('Game Over! ');
+    if (game.in_draw()) console.log('Draw!');
+    console.log((game.turn() === 'w' ? 'Black' : 'White') + ' wins!');
     process.exit();
     // return;
   }
