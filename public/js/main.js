@@ -1,23 +1,25 @@
-let Chess = require('./chess.min.js');
+let Chess = require("./chess.min.js");
+let eval1 = require("./evaluation").boardEvaluation1;
+let eval2 = require("./evaluation").boardEvaluation2;
 let game = new Chess();
 // Computer makes a move with algorithm choice and skill/depth level
-var makeMove = function(algo, skill = 3) {
+var makeMove = function(algo, skill = 3, evalType = 1) {
   // exit if the game is over
   if (game.game_over() === true) {
-    console.log('game over');
+    console.log("game over");
     return;
   }
   // Calculate the best move, using chosen algorithm
   if (algo === 1) {
     var move = randomMove();
   } else if (algo === 2) {
-    var move = calcBestMoveOne(game.turn());
+    var move = calcBestMoveOne(game.turn(), evalType);
   } else if (algo === 3) {
-    var move = calcBestMoveNoAB(skill, game, game.turn())[1];
+    var move = calcBestMoveNoAB(skill, game, game.turn(), true, evalType)[1];
   } else {
-    var move = calcBestMove(skill, game, game.turn())[1];
+    var move = calcBestMove(evalType, skill, game, game.turn())[1];
   }
-  console.log(move);
+  // console.log(move);
   // Make the calculated move
   game.move(move);
   // Update board positions
@@ -25,17 +27,27 @@ var makeMove = function(algo, skill = 3) {
 };
 
 // Computer vs Computer
-var playGame = function(algoW = 4, algoB = 4, skillW = 3, skillB = 2) {
+var playGame = function(
+  algoW = 4,
+  algoB = 4,
+  skillW = 2,
+  skillB = 1,
+  evalW = 1,
+  evalB = 1
+) {
   if (game.game_over() === true) {
-    console.log('game over' + game);
-    process.exit();
-    // return;
+    let winner = game.turn() === "w" ? "Black" : "White";
+    console.log("Game Over " + winner + " wins!");
+    // process.exit();
+    game.reset();
+    return winner;
   }
-  let skill = game.turn() === 'w' ? skillW : skillB;
-  let algo = game.turn() === 'w' ? algoW : algoB;
-  makeMove(algo, skill);
+  let skill = game.turn() === "w" ? skillW : skillB;
+  let algo = game.turn() === "w" ? algoW : algoB;
+  let evalType = game.turn() === "w" ? evalW : evalB;
+  makeMove(algo, skill, evalType);
   // setTimeout(function() {
-  playGame(algoW, algoB, skillW, skillB);
+  return playGame(algoW, algoB, skillW, skillB, evalW, evalB);
   // }, 10);
 };
 
@@ -50,42 +62,12 @@ var randomMove = function() {
 };
 
 /**
- * Evaluates current chess board relative to player
- * @param {string} color - Players color, either 'b' or 'w'
- * @return {Number} board value relative to player
- */
-var evaluateBoard = function(board, color) {
-  // Sets the value for each piece using standard piece value
-  var pieceValue = {
-    p: 100,
-    n: 350,
-    b: 350,
-    r: 525,
-    q: 1000,
-    k: 10000
-  };
-
-  // Loop through all pieces on the board and sum up total
-  var value = 0;
-  board.forEach(function(row) {
-    row.forEach(function(piece) {
-      if (piece) {
-        // Subtract piece value if it is opponent's piece
-        value +=
-          pieceValue[piece['type']] * (piece['color'] === color ? 1 : -1);
-      }
-    });
-  });
-
-  return value;
-};
-
-/**
  * Calculates the best move looking one move ahead
  * @param {string} playerColor - Players color, either 'b' or 'w'
  * @return {string} the best move
  */
-var calcBestMoveOne = function(playerColor) {
+var calcBestMoveOne = function(playerColor, evalType) {
+  let evaluateBoard = evalType == 1 ? eval1 : eval2;
   // List all possible moves
   var possibleMoves = game.moves();
   // Sort moves randomly, so the same move isn't always picked on ties
@@ -118,14 +100,18 @@ var calcBestMoveOne = function(playerColor) {
  * @param {Object} game - The game to evaluate
  * @param {string} playerColor - Players color, either 'b' or 'w'
  * @param {Boolean} isMaximizingPlayer - If current turn is maximizing or minimizing player
+ * @param {Number} evalType - Which evaluation function to use
  * @return {Array} The best move value, and the best move
  */
 var calcBestMoveNoAB = function(
   depth,
   game,
   playerColor,
-  isMaximizingPlayer = true
+  isMaximizingPlayer = true,
+  evalType
 ) {
+  let evaluateBoard = evalType == 1 ? eval1 : eval2;
+
   // Base case: evaluate board
   if (depth === 0) {
     value = evaluateBoard(game.board(), playerColor);
@@ -191,6 +177,7 @@ var calcBestMoveNoAB = function(
 
 /**
  * Calculates the best move using Minimax with Alpha Beta Pruning.
+ * @param {Number} evalType - Which evaluation function to use
  * @param {Number} depth - How many moves ahead to evaluate
  * @param {Object} game - The game to evaluate
  * @param {string} playerColor - Players color, either 'b' or 'w'
@@ -200,6 +187,7 @@ var calcBestMoveNoAB = function(
  * @return {Array} The best move value, and the best move
  */
 var calcBestMove = function(
+  evalType,
   depth,
   game,
   playerColor,
@@ -207,6 +195,7 @@ var calcBestMove = function(
   beta = Number.POSITIVE_INFINITY,
   isMaximizingPlayer = true
 ) {
+  let evaluateBoard = evalType == 1 ? eval1 : eval2;
   // Base case: evaluate board
   if (depth === 0) {
     value = evaluateBoard(game.board(), playerColor);

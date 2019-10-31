@@ -1,0 +1,64 @@
+$ npm start
+
+> chess-ai-2-json@ start C:\DevProjects\Chess-AI
+> node public/js/runner.js
+
+Starting trials for the following game set:
+     'White Depth 1 versus 1'
+Game Over White wins!
+     Game took 1.706 seconds.
+Game Over White wins!
+     Game took 1.324 seconds.
+Game Over White wins!
+     Game took 1.295 seconds.
+Game Over White wins!
+     Game took 2.912 seconds.
+White won 4 out of 4 times.
+
+Starting trials for the following game set:
+     'White Depth 2 versus 1'
+Game Over White wins!
+     Game took 4.829 seconds.
+Game Over White wins!
+     Game took 8.223 seconds.
+Game Over White wins!
+     Game took 0.662 seconds.
+Game Over White wins!
+     Game took 7.805 seconds.
+White won 4 out of 4 times.
+
+Starting trials for the following game set:
+     'White Depth 3 versus 1'
+Game Over White wins!
+     Game took 396.183 seconds.
+Game Over White wins!
+     Game took 217.011 seconds.
+Game Over White wins!
+     Game took 144.263 seconds.
+Game Over White wins!
+     Game took 247.136 seconds.
+White won 4 out of 4 times.
+
+Starting trials for the following game set:
+     'White Depth 2 versus 2'
+Game Over White wins!
+     Game took 14.72 seconds.
+Game Over White wins!
+     Game took 83.376 seconds.
+Game Over Black wins!
+     Game took 22.379 seconds.
+Game Over White wins!
+     Game took 6.165 seconds.
+White won 3 out of 4 times.
+
+Starting trials for the following game set:
+     'White Depth 3 versus 2'
+Game Over White wins!
+     Game took 204.678 seconds.
+Game Over White wins!
+     Game took 214.506 seconds.
+Game Over White wins!
+     Game took 92.51 seconds.
+Game Over White wins!
+     Game took 171.963 seconds.
+White won 4 out of 4 times.
