@@ -37,7 +37,6 @@ var playGame = function(
 ) {
   if (game.game_over() === true) {
     let winner = game.turn() === "w" ? "Black" : "White";
-    console.log("Game Over " + winner + " wins!");
     // process.exit();
     game.reset();
     return winner;
@@ -203,7 +202,8 @@ var calcBestMove = function(
   }
 
   // Recursive case: search possible moves
-  var bestMove = null; // best move not set yet
+  var bestMove = null;
+  // best move not set yet
   var possibleMoves = game.moves();
   // Set random order for possible moves
   possibleMoves.sort(function(a, b) {
@@ -220,6 +220,7 @@ var calcBestMove = function(
     game.move(move);
     // Recursively get the value from this move
     value = calcBestMove(
+      evalType,
       depth - 1,
       game,
       playerColor,

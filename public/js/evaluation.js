@@ -14,7 +14,7 @@ var pawnEvalWhite = [
 
 var pawnEvalBlack = reverseArray(pawnEvalWhite);
 
-var knightEval = [
+var knightEvalWhite = [
   [-5.0, -4.0, -3.0, -3.0, -3.0, -3.0, -4.0, -5.0],
   [-4.0, -2.0, 0.0, 0.0, 0.0, 0.0, -2.0, -4.0],
   [-3.0, 0.0, 1.0, 1.5, 1.5, 1.0, 0.0, -3.0],
@@ -51,7 +51,7 @@ var rookEvalWhite = [
 
 var rookEvalBlack = reverseArray(rookEvalWhite);
 
-var evalQueen = [
+var evalQueenWhite = [
   [-2.0, -1.0, -1.0, -0.5, -0.5, -1.0, -1.0, -2.0],
   [-1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0],
   [-1.0, 0.0, 0.5, 0.5, 0.5, 0.5, 0.0, -1.0],
@@ -75,7 +75,7 @@ var kingEvalWhite = [
 
 var kingEvalBlack = reverseArray(kingEvalWhite);
 
-var getPieceValue = function(piece, x, y) {
+var getPieceValue = function(piece, x, y, playerColor) {
   if (piece === null) {
     return 0;
   }
@@ -85,11 +85,11 @@ var getPieceValue = function(piece, x, y) {
     } else if (piece.type === "r") {
       return 50 + (isWhite ? rookEvalWhite[y][x] : rookEvalBlack[y][x]);
     } else if (piece.type === "n") {
-      return 30 + knightEval[y][x];
+      return 30 + knightEvalWhite[y][x];
     } else if (piece.type === "b") {
       return 30 + (isWhite ? bishopEvalWhite[y][x] : bishopEvalBlack[y][x]);
     } else if (piece.type === "q") {
-      return 90 + evalQueen[y][x];
+      return 90 + evalQueenWhite[y][x];
     } else if (piece.type === "k") {
       return 900 + (isWhite ? kingEvalWhite[y][x] : kingEvalBlack[y][x]);
     }
@@ -97,14 +97,14 @@ var getPieceValue = function(piece, x, y) {
   };
 
   var absoluteValue = getAbsoluteValue(piece, piece.color === "w", x, y);
-  return piece.color === "w" ? absoluteValue : -absoluteValue;
+  return piece.color === playerColor ? absoluteValue : -absoluteValue;
 };
 
-var boardEvaluation2 = function(board) {
+var boardEvaluation2 = function(board, color) {
   var totalEvaluation = 0;
-  board.forEach(function(row, y) {
-    row.forEach(function(piece, x) {
-      totalEvaluation = totalEvaluation + getPieceValue(board[i][j], i, j);
+  board.forEach(function(row, i) {
+    row.forEach(function(piece, j) {
+      totalEvaluation = totalEvaluation + getPieceValue(piece, i, j, color);
     });
   });
   return totalEvaluation;
