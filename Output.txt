@@ -1,64 +1,46 @@
-$ npm start
+Running 20 trials for the following game set:
+'White Depth 1 versus Black Depth 1'
 
-> chess-ai-2-json@ start C:\DevProjects\Chess-AI
-> node public/js/runner.js
+     Running tests with black evaluation function = 1
 
-Starting trials for the following game set:
-     'White Depth 1 versus 1'
-Game Over White wins!
-     Game took 1.706 seconds.
-Game Over White wins!
-     Game took 1.324 seconds.
-Game Over White wins!
-     Game took 1.295 seconds.
-Game Over White wins!
-     Game took 2.912 seconds.
-White won 4 out of 4 times.
+     White won 9 out of 20 times.
+     Games took an average of 1.3360499999999997 seconds.      
 
-Starting trials for the following game set:
-     'White Depth 2 versus 1'
-Game Over White wins!
-     Game took 4.829 seconds.
-Game Over White wins!
-     Game took 8.223 seconds.
-Game Over White wins!
-     Game took 0.662 seconds.
-Game Over White wins!
-     Game took 7.805 seconds.
-White won 4 out of 4 times.
+     Running tests with black evaluation function = 2
 
-Starting trials for the following game set:
-     'White Depth 3 versus 1'
-Game Over White wins!
-     Game took 396.183 seconds.
-Game Over White wins!
-     Game took 217.011 seconds.
-Game Over White wins!
-     Game took 144.263 seconds.
-Game Over White wins!
-     Game took 247.136 seconds.
-White won 4 out of 4 times.
+     White won 6 out of 20 times.
+     Games took an average of 1.5142 seconds.
 
-Starting trials for the following game set:
-     'White Depth 2 versus 2'
-Game Over White wins!
-     Game took 14.72 seconds.
-Game Over White wins!
-     Game took 83.376 seconds.
-Game Over Black wins!
-     Game took 22.379 seconds.
-Game Over White wins!
-     Game took 6.165 seconds.
-White won 3 out of 4 times.
+Running 20 trials for the following game set:
+'White Depth 2 versus Black Depth 1'
 
-Starting trials for the following game set:
-     'White Depth 3 versus 2'
-Game Over White wins!
-     Game took 204.678 seconds.
-Game Over White wins!
-     Game took 214.506 seconds.
-Game Over White wins!
-     Game took 92.51 seconds.
-Game Over White wins!
-     Game took 171.963 seconds.
-White won 4 out of 4 times.
+     Running tests with black evaluation function = 1
+
+     White won 20 out of 20 times.
+     Games took an average of 3.8766 seconds.
+
+     Running tests with black evaluation function = 2
+
+     White won 20 out of 20 times.
+     Games took an average of 5.152399999999999 seconds.       
+
+Running 20 trials for the following game set:
+'White Depth 3 versus Black Depth 1'
+
+     Running tests with black evaluation function = 1
+
+     White won 19 out of 20 times.
+     Games took an average of 124.74494999999999 seconds.      
+
+     Running tests with black evaluation function = 2
+
+     White won 20 out of 20 times.
+     Games took an average of 189.6092 seconds.
+
+Running 20 trials for the following game set:
+'White Depth 2 versus Black Depth 2'
+
+     Running tests with black evaluation function = 1
+
+     White won 11 out of 20 times.
+     Games took an average of 20.98095 seconds.
